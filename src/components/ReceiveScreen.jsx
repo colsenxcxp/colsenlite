@@ -1,18 +1,22 @@
 import React from "react";
 
-const ReceiveScreen = ({ onBack }) => {
-  const walletAddress = "0x1234567890ABCDEF1234567890ABCDEF12345678";
+const ReceiveScreen = () => {
+  const walletAddress = "0xYourWalletAddressHere";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(walletAddress);
+    alert("Wallet address copied!");
+  };
 
   return (
-    <div className="p-6 text-center bg-white shadow-md rounded-lg w-80">
-      <h2 className="text-xl font-bold mb-4">📥 Receive</h2>
-      <p className="text-sm text-gray-600 mb-2">Your wallet address:</p>
-      <p className="break-words font-mono text-xs mb-4">{walletAddress}</p>
+    <div className="space-y-4 text-center">
+      <h2 className="text-lg font-semibold">Receive Tokens</h2>
+      <div className="bg-zinc-700 p-4 rounded break-words">{walletAddress}</div>
       <button
-        onClick={onBack}
-        className="bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-gray-400"
+        onClick={copyToClipboard}
+        className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded"
       >
-        🔙 Back
+        Copy Address
       </button>
     </div>
   );
