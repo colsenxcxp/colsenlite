@@ -1,16 +1,35 @@
-// src/components/SendForm.jsx
-import React from "react";
+import React, { useState } from "react";
 
-const SendForm = ({ onBack }) => {
+const SendForm = () => {
+  const [toAddress, setToAddress] = useState("");
+  const [amount, setAmount] = useState("");
+
+  const handleSend = () => {
+    alert(`Sending ${amount} CXP to ${toAddress}`);
+  };
+
   return (
-    <div className="p-6 bg-white shadow-md rounded-lg w-80 text-center">
-      <h2 className="text-xl font-bold text-[#10141C] mb-4">💸 Send</h2>
-      <p className="text-gray-600 mb-4">Send crypto coming soon.</p>
+    <div className="space-y-4">
+      <h2 className="text-lg font-semibold">Send Tokens</h2>
+      <input
+        type="text"
+        className="w-full p-2 rounded bg-zinc-700 text-white"
+        placeholder="Recipient Address"
+        value={toAddress}
+        onChange={(e) => setToAddress(e.target.value)}
+      />
+      <input
+        type="number"
+        className="w-full p-2 rounded bg-zinc-700 text-white"
+        placeholder="Amount (CXP)"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
       <button
-        onClick={onBack}
-        className="bg-gray-200 text-black font-bold py-2 px-4 rounded hover:bg-gray-300"
+        onClick={handleSend}
+        className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded"
       >
-        ← Back
+        Send
       </button>
     </div>
   );
