@@ -1,17 +1,30 @@
-// src/components/TransactionHistory.jsx
 import React from "react";
 
-const TransactionHistory = ({ onBack }) => {
+const mockTransactions = [
+  { id: 1, type: "Send", amount: "50 CXP", to: "0xabc...123" },
+  { id: 2, type: "Receive", amount: "120 CXP", from: "0xdef...456" },
+];
+
+const TransactionHistory = () => {
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md w-80 text-center">
-      <h2 className="text-xl font-bold mb-4">📄 Transaction History</h2>
-      <p className="text-gray-600 mb-6">No transactions to show.</p>
-      <button
-        className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
-        onClick={onBack}
-      >
-        🔙 Back
-      </button>
+    <div className="space-y-4">
+      <h2 className="text-lg font-semibold text-center">Transaction History</h2>
+      <ul className="space-y-2">
+        {mockTransactions.map((tx) => (
+          <li
+            key={tx.id}
+            className="bg-zinc-700 p-3 rounded flex justify-between items-center"
+          >
+            <div>
+              <strong>{tx.type}</strong>
+              <div className="text-sm text-zinc-300">
+                {tx.type === "Send" ? `To: ${tx.to}` : `From: ${tx.from}`}
+              </div>
+            </div>
+            <span className="text-orange-400">{tx.amount}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
